@@ -6,7 +6,7 @@ import { useStoreModal } from "@/hooks/use-store-modal";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Check, ChevronsUpDown, Store } from "lucide-react";
+import { Check, ChevronsUpDown, PlusCircle, Store } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PopoverContent } from "@radix-ui/react-popover";
 import {
@@ -15,8 +15,9 @@ import {
   CommandGroup,
   CommandInput,
   CommandList,
+  CommandSeparator,
+  CommandItem
 } from "./ui/command";
-import { CommandItem } from "cmdk";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -90,6 +91,20 @@ export default function StoreSwitcher({
                   />
                 </CommandItem>
               ))}
+            </CommandGroup>
+          </CommandList>
+          <CommandSeparator />
+          <CommandList>
+            <CommandGroup>
+              <CommandItem
+                onSelect={() => {
+                  setOpen(false)
+                  storeModal.onOpen();
+                }}>
+
+                <PlusCircle className="mr-2 h-5 w-5" />
+                Create Store
+              </CommandItem>
             </CommandGroup>
           </CommandList>
         </Command>
